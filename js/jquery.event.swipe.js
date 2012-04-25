@@ -1,5 +1,5 @@
 // jQuery.event.swipe
-// 0.2
+// 0.4
 // Stephen Band
 
 // Dependencies
@@ -25,49 +25,65 @@
 	    // Ratio of the width (or height) of the target node must be
 	    // swiped before being considered a swipe.
 	    settings = {
-	    	threshold: 0.5
+	    	// Ratio of distance over target finger must travel to be
+	    	// considered a swipe.
+	    	threshold: 0.4,
+	    	// Faster fingers can travel shorter distances to be considered
+	    	// swipes. 'sensitivity' controls how much. Bigger is shorter.
+	    	sensitivity: 2
 	    };
 
-	function returnTrue() {
-		return true;
-	}
-
 	function moveend(e) {
-		var w = e.target.offsetWidth,
-		    h = e.target.offsetHeight;
+		var w, h, event;
+
+		w = e.target.offsetWidth;
+		h = e.target.offsetHeight;
+
+		// Copy over some useful properties from the move event
+		event = {
+			distX: e.distX,
+			distY: e.distY,
+			velocityX: e.velocityX,
+			velocityY: e.velocityY,
+			finger: e.finger
+		};
 
 		// Find out which of the four directions was swiped
-		if (e.deltaX > e.deltaY) {
-			if (e.deltaX > -e.deltaY) {
-				if (e.deltaX/w > settings.threshold) {
-					trigger(e.currentTarget, 'swiperight');
+		if (e.distX > e.distY) {
+			if (e.distX > -e.distY) {
+				if (e.distX/w > settings.threshold || e.velocityX * e.distX/w * settings.sensitivity > 1) {
+					event.type = 'swiperight';
+					trigger(e.currentTarget, event);
 				}
 			}
 			else {
-				if (e.deltaY/h < settings.threshold) {
-					trigger(e.currentTarget, 'swipeup')
+				if (-e.distY/h > settings.threshold || e.velocityY * e.distY/w * settings.sensitivity > 1) {
+					event.type = 'swipeup';
+					trigger(e.currentTarget, event);
 				}
 			}
 		}
 		else {
-			if (e.deltaX > -e.deltaY) {
-				if (e.deltaY/h > settings.threshold) {
-					trigger(e.currentTarget, 'swipedown');
+			if (e.distX > -e.distY) {
+				if (e.distY/h > settings.threshold || e.velocityY * e.distY/w * settings.sensitivity > 1) {
+					event.type = 'swipedown';
+					trigger(e.currentTarget, event);
 				}
 			}
 			else {
-				if (e.deltaX/w < settings.threshold) {
-					trigger(e.currentTarget, 'swipeleft');
+				if (-e.distX/w > settings.threshold || e.velocityX * e.distX/w * settings.sensitivity > 1) {
+					event.type = 'swipeleft';
+					trigger(e.currentTarget, event);
 				}
 			}
 		}
-	};
+	}
 
 	function isSetup(node) {
 		var events = jQuery.data(node, 'events');
 
 		return ((events.swipe ? 1 : 0) +
-			    (events.swipeleft ? 1 : 0) +
+			      (events.swipeleft ? 1 : 0) +
 		        (events.swiperight ? 1 : 0) +
 		        (events.swipeup ? 1 : 0) +
 		        (events.swipedown ? 1 : 0)) > 1;
@@ -75,7 +91,7 @@
 
 	jQuery.event.special.swipe =
 	jQuery.event.special.swipeleft =
-	jQuery.event.special.swiperight = 
+	jQuery.event.special.swiperight =
 	jQuery.event.special.swipeup =
 	jQuery.event.special.swipedown = {
 		setup: function( data, namespaces, eventHandle ) {

@@ -8,74 +8,22 @@
 	<!-- Make IE recognise HTML5 elements (for styling - must stay in the head, before elements are used) -->
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	
-	<title>Title</title>
+	<title>jQuery.event.swipe</title>
 	
 	<link rel="icon" type="image/png" href="images/favicon.png" />
 	
 	<style>
 		.test {
-			position: absolute;
-			left: 20px;
-			top: 0;
 			background-color: red;
-			width: 200px;
-			height: 200px;
-		}
-		.resize, .rotate {
-		  position: absolute;
-		  width: 20px;
-		  height: 20px;
-		}
-		
-		.resize {
-		  bottom: 10px;
-		  right: 10px;
-		  background: yellow;
-		}
-		
-		.rotate {
-		  top: 10px;
-		  right: 10px;
-		  background: orange;
-		}
-		
-		.centre_mark,
-		.origin_mark,
-		.phantom_mark {
-			position: absolute;
-			top: 0;
-			left: 20px;
-			background: orange;
-			width: 8px;
-			height: 8px;
-			margin-left: -4px;
-			margin-top: -4px;
-			-webkit-border-radius: 4px;
-			   -moz-border-radius: 4px;
-			        border-radius: 4px;
-			line-height: 8px;
-			text-transform: uppercase;
-			font-size: 10px;
-			font-family: Helvetica;
-			color: rgba(128,128,128,0.6);
-			text-indent: 8px;
-			border: 1px solid black;
-		}
-		
-		.origin_mark {
-			background: rgba(128,128,128,0.6);
+			width: 600px;
+			height: 240px;
 		}
 
-		.phantom_mark {
-			background: rgba(128,128,128,0.6);
-		}
-		
 		.test_wrap {
 			height: 200px;
 			margin-bottom: 2em;
 		}
 	</style>
-
 </head>
 
 <body>
@@ -84,10 +32,7 @@
 	</header>
 	
 	<div class="test_wrap wrap">
-		<div class="test" id="test">
-		 <div class="resize"></div>
-		 <div class="rotate"></div>
-		</div>
+		<div class="test" id="test"></div>
 		
 		<div class="centre_mark"></div>
 		<div class="origin_mark"></div>
@@ -99,7 +44,7 @@
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
 			jQuery('#test').on('swipeleft swiperight', function(e) {
-				jQuery('body').append(e.type+' ');
+				jQuery('body').append(e.type+' '+e.distX+' | ');
 			});
 		})
 	</script>
