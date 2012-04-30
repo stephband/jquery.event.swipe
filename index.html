@@ -23,7 +23,7 @@ title: jquery.event.move
 	
 	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.reset.css" />
 	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.typography.css" />
-	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.typography.15_20.css" />
+	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.typography.14_20.css" />
 	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.forms.css" />
 	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.classes.css" />
 	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.theme.css" />
@@ -43,9 +43,9 @@ title: jquery.event.move
 		}
 
 		.site_wrap {
-			width: 50rem;
-			min-width: 256px;
-			max-width: 80%;
+			width: 48rem;
+			min-width: 292px;
+			max-width: 92%;
 		}
 		
 		pre {
@@ -66,16 +66,20 @@ title: jquery.event.move
 		}
 
 		.img_slides_wrap {
-			width: 816px;
+			width: 784px;
 			border: 8px solid #333333;
 			background-color: #444444;
 			overflow: hidden;
 		}
 
 		.img_slide {
-			/* Overide template's height transitions. */
-			height: 465px !important;
 			padding: 0;
+		}
+
+		.js .img_slide {
+			/* Overide template's height transitions. */
+			width: 768px;
+			height: 432px;
 		}
 
 		.slide_buttons_index {
@@ -91,19 +95,10 @@ title: jquery.event.move
 
 	<section class="demo_section">
 		<div class="img_slides_wrap slides_wrap wrap">
-			<img class="img_slide slide active" id="slide1" src="https://lh5.googleusercontent.com/-BED5h574s1Q/T4Sji7_hmOI/AAAAAAAAAO8/JMChDngsCDk/s800/Norway_201284.png"
-			/><img class="img_slide slide" id="slide2" src="https://lh6.googleusercontent.com/-9_uG9zfLoIg/T4ShjaNedbI/AAAAAAAAAKc/0zfSJfF6fAM/s800/Norway_201212.png"
-			/><img class="img_slide slide" id="slide3" src="https://lh5.googleusercontent.com/-n31QkVB4M9c/T4SjckZM1TI/AAAAAAAAAOs/H26JyEo9970/s800/Norway_201276.png"
-			/><img class="img_slide slide" id="slide4" src="https://lh3.googleusercontent.com/-jti_dD8mDiQ/T4ShY14T5HI/AAAAAAAAAKE/-jF6OT_zmb4/s800/Norway_2012102.png" />
-
-<!--
-https://lh6.googleusercontent.com/-9_uG9zfLoIg/T4ShjaNedbI/AAAAAAAAAKc/0zfSJfF6fAM/s800/Norway_201212.png
-https://lh5.googleusercontent.com/-BED5h574s1Q/T4Sji7_hmOI/AAAAAAAAAO8/JMChDngsCDk/s800/Norway_201284.png
-https://lh4.googleusercontent.com/-MShhyv4lWuM/T4Si18g0XsI/AAAAAAAAANU/Nnnxh68myRA/s800/Norway_201241.png
-https://lh5.googleusercontent.com/-n31QkVB4M9c/T4SjckZM1TI/AAAAAAAAAOs/H26JyEo9970/s800/Norway_201276.png
-https://lh3.googleusercontent.com/-jti_dD8mDiQ/T4ShY14T5HI/AAAAAAAAAKE/-jF6OT_zmb4/s800/Norway_2012102.png
--->
-
+			<img class="img_slide slide active" id="slide1" src="https://lh5.googleusercontent.com/-MShhyv4lWuM/T4Si18g0XsI/AAAAAAAAANU/Nnnxh68myRA/s768/Norway_201241.png"
+			/><img class="img_slide slide" id="slide2" src="https://lh6.googleusercontent.com/-BED5h574s1Q/T4Sji7_hmOI/AAAAAAAAAO8/JMChDngsCDk/s768/Norway_201284.png"
+			/><img class="img_slide slide" id="slide3" src="https://lh6.googleusercontent.com/-n31QkVB4M9c/T4SjckZM1TI/AAAAAAAAAOs/H26JyEo9970/s768/Norway_201276.png"
+			/><img class="img_slide slide" id="slide4" src="https://lh6.googleusercontent.com/-jti_dD8mDiQ/T4ShY14T5HI/AAAAAAAAAKE/-jF6OT_zmb4/s768/Norway_2012102.png" />
 		</div>
 		<ul class="horizontal slide_buttons_index buttons_index index">
 			<li><a class="slide_button button" href="#slide1">Slide 1</a></li>
