@@ -1,27 +1,85 @@
+---
+title: jquery.event.move
+---
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+<html lang="en">
 <head>
-
 	<meta charset="utf-8" />
-	
-	<!-- Make IE recognise HTML5 elements (for styling - must stay in the head, before elements are used) -->
-	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<meta name="author" content="">
+	<meta name="description" content="">
 	
 	<title>jQuery.event.swipe</title>
 	
+	<script>document.documentElement.className = 'js';</script>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.5">
+	<!-- Force latest IE rendering engine & Chrome Frame -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!-- Make IE recognise HTML5 elements for styling -->
+	<!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
 	<link rel="icon" type="image/png" href="images/favicon.png" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	
+	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.reset.css" />
+	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.typography.css" />
+	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.typography.14_20.css" />
+	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.forms.css" />
+	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.classes.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.ie.css" /><![endif]-->
+	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.ie8.css" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.ie7.css" /><![endif]-->
+	<!--[if IE 6]><link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.ie6.css" /><![endif]-->
 	
 	<style>
-		.test {
-			background-color: red;
-			width: 600px;
-			height: 240px;
+		body {
+			background-color: rgb(250,250,250);
+		}
+		
+		section {
+			padding: 1em 0 6em 0;
+			border-bottom: 1px solid #cccccc;
+			position: relative;
+		}
+		
+		.button.active {
+			background-color: #dddddd;
+		}
+		
+		.dropdown {
+			background:rgb(234,234,234);
+		}
+		
+		.popdown {
+			color: white;
+			background: rgb(234,234,234);
+		}
+		
+		.stopdown {
+			background: #bbbbbb;
+		}
+		
+		.popdown .button {
+			color: white;
+		}
+		
+		.tabs {
+			position: relative;
+		}
+		
+		.tab {
+			min-height: 4em;
 		}
 
-		.test_wrap {
-			height: 200px;
-			margin-bottom: 2em;
+		.img_slides_wrap {
+			width: 843px;
+			border: 8px solid #252525;
+			overflow: hidden;
+			background-color: #444444;
+		}
+
+		.img_slide {
+			height: 465px !important;
 		}
 	</style>
 </head>
@@ -30,16 +88,117 @@
 	<header>
 		<h1>jQuery.event.swipe</h1>
 	</header>
+
+	<section>
+		<ul class="horizontal slide_buttons_index buttons_index index">
+			<li><a class="slide_button button" href="#slide1">Slide 1</a></li>
+			<li><a class="slide_button button" href="#slide2">Slide 2</a></li>
+			<li><a class="slide_button button" href="#slide3">Slide 3</a></li>
+			<li><a class="slide_button button" href="#slide4">Slide 4</a></li>
+		</ul>
+		<div class="img_slides_wrap slides_wrap wrap">
+			<div class="img_slide slide" id="slide1">
+				<img src="https://lh5.googleusercontent.com/-MShhyv4lWuM/T4Si18g0XsI/AAAAAAAAANU/Nnnxh68myRA/s827/Norway_201241.png" />
+			</div
+			
+			><div class="img_slide slide active" id="slide2">
+				<img src="https://lh3.googleusercontent.com/-9_uG9zfLoIg/T4ShjaNedbI/AAAAAAAAAKc/0zfSJfF6fAM/s827/Norway_201212.png" />
+			</div
+			
+			><div class="img_slide slide" id="slide3">
+				<img src="https://lh6.googleusercontent.com/-n31QkVB4M9c/T4SjckZM1TI/AAAAAAAAAOs/H26JyEo9970/s827/Norway_201276.png" />
+			</div
+
+			><div class="img_slide slide" id="slide4">
+				<img src="https://lh6.googleusercontent.com/-jti_dD8mDiQ/T4ShY14T5HI/AAAAAAAAAKE/-jF6OT_zmb4/s827/Norway_2012102.png" />
+			</div>
+		</div>
+	</section>
+
+
+	<h2>Project</h2>
 	
-	<div class="test_wrap wrap">
-		<div class="test" id="test"></div>
-		
-		<div class="centre_mark"></div>
-		<div class="origin_mark"></div>
-	</div>
+	<ul>
+		<li>Github: <a href="http://github.com/stephband/jquery.event.swipe">github.com/stephband/jquery.event.swipe</a></li>
+		<li>Issues: <a href="http://github.com/stephband/jquery.event.swipe/issues">github.com/stephband/jquery.event.swipe/issues</a></li>
+	</ul>
+
+
+	<h2>Dependencies</h2>
 	
+	<ul>
+		<li>Github: <a href="http://github.com/stephband/jquery.event.move">github.com/stephband/jquery.event.swipe</a></li>
+	</ul>
+	
+	<h2 id="what">Swipe events</h2>
+
+	<dl>
+		<dt>swipeleft, swiperight, swipeup, swipedown</dt>
+		<dd>Fired when the finger is released from the touch surface if a) the finger has travelled a distance or b) the finger has been swiped quickly.</dd>
+	</dl>
+	
+	<p>Swipe event objects are augmented with the properties:</p>
+	
+	<dl>
+	  <dt>e.pageX, e.pageY</dt>
+	  <dd>Current page coordinates of pointer.</dd>
+	  
+	  <dt>e.startX, e.startY</dt>
+	  <dd>Page coordinates the pointer had at the tart of the swipe.</dd>
+	  
+	  <dt>e.distX, e.distY</dt>
+	  <dd>Distance finger moved during the swipe.</dd>
+
+	  <dt>e.velocityX, e.velocityY</dt>
+	  <dd>Velocity, in pixels/ms, averaged over the last few move events.</dd>
+	</dl>
+	
+	
+	<h2 id="how">How to use swipe events</h2>
+	
+	{% highlight js %}
+jQuery('.mydiv')
+.on('swipeleft', function(e) {
+  // View the next slide
+  jQuery('.next_slide').addClass('active');
+})
+.on('swiperight', function(e) {
+  // View the previous slide
+  jQuery('.prev_slide').addClass('active');
+});{% endhighlight %}
+	
+	
+	<h2 id="why2">What if I want to scroll, not swipe?</h2>
+
+	<p>Avoid messing with gesture events by preventing movestart:</p>
+
+	{% highlight js %}
+jQuery('.mydiv')
+.on('movestart', function(e) {
+  // move .mydiv horizontally
+  jQuery(this).css({ left: e.startX + e.deltaX });
+})
+.bind('swipeup', function() {
+  // move is complete!
+});{% endhighlight %}
+
+	<h2 id="where">Where is jquery.event.move being used?</h2>
+
+	<p>It's part of the <a href="stephband.info/template">template</a> project. It's used for:</p>
+
+	<ul>
+		<li><a href="http://2012.festivalcite.ch/">Festival de la cité</a></li>
+	</ul>
+
+	<h2 id="where">Who made it?</h2>
+
+	<p>I made it. I'm <a href="http://twitter.com/stephband">stephband</a> on twitter, if you're into that sort of thing.</p>
+
+
+
+
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
-	<script src="js/jquery.event.move.js"></script>
+	<script src="http://stephband.info/jquery.event.move/js/jquery.event.move.js"></script>
 	<script src="js/jquery.event.swipe.js"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
