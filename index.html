@@ -23,9 +23,11 @@ title: jquery.event.move
 	
 	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.reset.css" />
 	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.typography.css" />
-	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.typography.14_20.css" />
+	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.typography.15_20.css" />
 	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.forms.css" />
 	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.classes.css" />
+	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.theme.css" />
+	<link rel="stylesheet" type="text/css" href="http://stephband.github.com/css/site.highlight.light.css" />
 	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.ie.css" /><![endif]-->
 	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.ie8.css" /><![endif]-->
 	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="http://stephband.github.com/template/css/template.ie7.css" /><![endif]-->
@@ -35,89 +37,85 @@ title: jquery.event.move
 		body {
 			background-color: rgb(250,250,250);
 		}
-		
-		section {
-			padding: 1em 0 6em 0;
-			border-bottom: 1px solid #cccccc;
-			position: relative;
+
+		body > header {
+			margin-bottom: 2.8571em;
+		}
+
+		.site_wrap {
+			width: 50rem;
+			min-width: 256px;
+			max-width: 80%;
 		}
 		
-		.button.active {
-			background-color: #dddddd;
+		pre {
+			padding: 0.6429em;
+			background-color: #eeeeee;
+			border: 1px solid #cccccc;
+			
+			-webkit-border-radius: 0.3571em;
+			   -moz-border-radius: 0.3571em;
+			     -o-border-radius: 0.3571em;
+			        border-radius: 0.3571em;
 		}
-		
-		.dropdown {
-			background:rgb(234,234,234);
-		}
-		
-		.popdown {
-			color: white;
-			background: rgb(234,234,234);
-		}
-		
-		.stopdown {
-			background: #bbbbbb;
-		}
-		
-		.popdown .button {
-			color: white;
-		}
-		
-		.tabs {
-			position: relative;
-		}
-		
-		.tab {
-			min-height: 4em;
+
+		.demo_section > .slides_wrap {
+			margin-bottom: 1em;
+			margin-left: -8px;
+			margin-right: -8px;
 		}
 
 		.img_slides_wrap {
-			width: 843px;
-			border: 8px solid #252525;
-			overflow: hidden;
+			width: 816px;
+			border: 8px solid #333333;
 			background-color: #444444;
+			overflow: hidden;
 		}
 
 		.img_slide {
+			/* Overide template's height transitions. */
 			height: 465px !important;
+			padding: 0;
+		}
+
+		.slide_buttons_index {
+			text-align: center;
 		}
 	</style>
 </head>
 
-<body>
+<body class="site_wrap wrap">
 	<header>
 		<h1>jQuery.event.swipe</h1>
 	</header>
 
-	<section>
+	<section class="demo_section">
+		<div class="img_slides_wrap slides_wrap wrap">
+			<img class="img_slide slide active" id="slide1" src="https://lh5.googleusercontent.com/-BED5h574s1Q/T4Sji7_hmOI/AAAAAAAAAO8/JMChDngsCDk/s800/Norway_201284.png"
+			/><img class="img_slide slide" id="slide2" src="https://lh6.googleusercontent.com/-9_uG9zfLoIg/T4ShjaNedbI/AAAAAAAAAKc/0zfSJfF6fAM/s800/Norway_201212.png"
+			/><img class="img_slide slide" id="slide3" src="https://lh5.googleusercontent.com/-n31QkVB4M9c/T4SjckZM1TI/AAAAAAAAAOs/H26JyEo9970/s800/Norway_201276.png"
+			/><img class="img_slide slide" id="slide4" src="https://lh3.googleusercontent.com/-jti_dD8mDiQ/T4ShY14T5HI/AAAAAAAAAKE/-jF6OT_zmb4/s800/Norway_2012102.png" />
+
+<!--
+https://lh6.googleusercontent.com/-9_uG9zfLoIg/T4ShjaNedbI/AAAAAAAAAKc/0zfSJfF6fAM/s800/Norway_201212.png
+https://lh5.googleusercontent.com/-BED5h574s1Q/T4Sji7_hmOI/AAAAAAAAAO8/JMChDngsCDk/s800/Norway_201284.png
+https://lh4.googleusercontent.com/-MShhyv4lWuM/T4Si18g0XsI/AAAAAAAAANU/Nnnxh68myRA/s800/Norway_201241.png
+https://lh5.googleusercontent.com/-n31QkVB4M9c/T4SjckZM1TI/AAAAAAAAAOs/H26JyEo9970/s800/Norway_201276.png
+https://lh3.googleusercontent.com/-jti_dD8mDiQ/T4ShY14T5HI/AAAAAAAAAKE/-jF6OT_zmb4/s800/Norway_2012102.png
+-->
+
+		</div>
 		<ul class="horizontal slide_buttons_index buttons_index index">
 			<li><a class="slide_button button" href="#slide1">Slide 1</a></li>
 			<li><a class="slide_button button" href="#slide2">Slide 2</a></li>
 			<li><a class="slide_button button" href="#slide3">Slide 3</a></li>
 			<li><a class="slide_button button" href="#slide4">Slide 4</a></li>
 		</ul>
-		<div class="img_slides_wrap slides_wrap wrap">
-			<div class="img_slide slide" id="slide1">
-				<img src="https://lh5.googleusercontent.com/-MShhyv4lWuM/T4Si18g0XsI/AAAAAAAAANU/Nnnxh68myRA/s827/Norway_201241.png" />
-			</div
-			
-			><div class="img_slide slide active" id="slide2">
-				<img src="https://lh3.googleusercontent.com/-9_uG9zfLoIg/T4ShjaNedbI/AAAAAAAAAKc/0zfSJfF6fAM/s827/Norway_201212.png" />
-			</div
-			
-			><div class="img_slide slide" id="slide3">
-				<img src="https://lh6.googleusercontent.com/-n31QkVB4M9c/T4SjckZM1TI/AAAAAAAAAOs/H26JyEo9970/s827/Norway_201276.png" />
-			</div
-
-			><div class="img_slide slide" id="slide4">
-				<img src="https://lh6.googleusercontent.com/-jti_dD8mDiQ/T4ShY14T5HI/AAAAAAAAAKE/-jF6OT_zmb4/s827/Norway_2012102.png" />
-			</div>
-		</div>
 	</section>
 
 
 	<h2>Project</h2>
-	
+
 	<ul>
 		<li>Github: <a href="http://github.com/stephband/jquery.event.swipe">github.com/stephband/jquery.event.swipe</a></li>
 		<li>Issues: <a href="http://github.com/stephband/jquery.event.swipe/issues">github.com/stephband/jquery.event.swipe/issues</a></li>
@@ -134,7 +132,8 @@ title: jquery.event.move
 
 	<dl>
 		<dt>swipeleft, swiperight, swipeup, swipedown</dt>
-		<dd>Fired when the finger is released from the touch surface if a) the finger has travelled a distance or b) the finger has been swiped quickly.</dd>
+		<dd>Fired when the finger is released from the touch surface if a) the finger has just travelled a threshold distance or b) the finger has shorter than the threshold, but quickly.
+		    Also responds to mouse events.</dd>
 	</dl>
 	
 	<p>Swipe event objects are augmented with the properties:</p>
@@ -193,10 +192,7 @@ jQuery('.mydiv')
 
 	<h2 id="where">Who made it?</h2>
 
-	<p>I made it. I'm <a href="http://twitter.com/stephband">stephband</a> on twitter, if you're into that sort of thing.</p>
-
-
-
+	<p>I did. I'm <a href="http://twitter.com/stephband">stephband</a> on twitter, if you're into that sort of thing.</p>
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
 	<script src="http://stephband.info/jquery.event.move/js/jquery.event.move.js"></script>
