@@ -170,7 +170,8 @@ jQuery('.mydiv')
 	
 	<h2 id="why2">What if I want to scroll, not swipe?</h2>
 
-	<p>Avoid messing with gesture events by preventing movestart:</p>
+	<p>Swipe events are built on top of move events (<a href="http://stephband.info/jquery.event.move/">stephband.info/jquery.event.move</a>).
+	   To avoid messing up native gestures such as scroll, call preventDefault() on movestart:</p>
 
 	{% highlight js %}
 jQuery('.mydiv')
@@ -182,9 +183,9 @@ jQuery('.mydiv')
   // move is complete!
 });{% endhighlight %}
 
-	<h2 id="where">Where is jquery.event.move being used?</h2>
+	<h2 id="where">Where is jquery.event.swipe being used?</h2>
 
-	<p>It's part of the <a href="stephband.info/template">template</a> project. It's used for:</p>
+	<p>It's part of the <a href="stephband.info/template">template</a> project. It's used in:</p>
 
 	<ul>
 		<li><a href="http://2012.festivalcite.ch/">Festival de la cité</a></li>
