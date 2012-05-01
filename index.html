@@ -155,7 +155,7 @@ slides
 })
 .on('swiperight', function(e) {
   slides.eq(i - 1).addClass('active');
-}){% endhighlight %}
+});{% endhighlight %}
 	
 		<p>But what if I want to scroll, not swipe?
 		   Well, swipe events are built on top of move events (<a href="http://stephband.info/jquery.event.move/">stephband.info/jquery.event.move</a>).
@@ -168,11 +168,11 @@ jQuery('.mydiv')
   // direction, prevent it so that the browser scrolls normally.
   if ((e.distX > e.distY && e.distX < -e.distY) ||
       (e.distX < e.distY && e.distX > -e.distY)) {
-  	e.preventDefault();
+    e.preventDefault();
   }
-}){% endhighlight %}
+});{% endhighlight %}
 
-		<p>To see how the example above works, view the source of this page.</p>
+		<p>To see how the example at the top of the page works, view source.</p>
 
 		<h2 id="where">Where is jquery.event.swipe being used?</h2>
 		<p>It's part of the <a href="stephband.info/template">template</a> project. It's brand new. It's not yet in a live project.</p>
