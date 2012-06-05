@@ -4,3 +4,6 @@
 <p>jQuery.event.move: <a href="http://stephband.info/jquery.event.move/">stephband.info/jquery.event.move</a></p>
 
 <p>One of swipeleft, swiperight, swipeup or swipedown is triggered on moveend, when the move has covered at least a threshold proportion of the dimension of the target node.</p>
+
+<h2>Demo and docs</h2>
+<a href="http://stephband.info/jquery.event.swipe">stephband.info/jquery.event.swipe</a>

@@ -7,7 +7,7 @@
 
 // One of swipeleft, swiperight, swipeup or swipedown is triggered on
 // moveend, when the move has covered a threshold ratio of the dimension
-// of the target node. The default is 0.5. It can be changed with:
+// of the target node. The default is 0.4. It can be changed with:
 // 
 // jQuery.event.special.swipe.settings
 
