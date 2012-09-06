@@ -108,7 +108,7 @@
 
 			// If another swipe event is already setup, don't setup again.
 			if (data.count++ > 0) { return; }
-console.log('SETUP');
+
 			add(this, 'moveend', moveend);
 
 			return true;
@@ -119,7 +119,7 @@ console.log('SETUP');
 
 			// If another swipe event is still setup, don't teardown.
 			if (--data.count > 0) { return; }
-console.log('TEARDOWN');
+
 			remove(this, 'moveend', moveend);
 
 			return true;
