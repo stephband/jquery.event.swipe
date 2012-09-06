@@ -1,17 +1,27 @@
 // jQuery.event.swipe
-// 0.4
+// 0.5
 // Stephen Band
 
 // Dependencies
-// jQuery.event.move
+// jQuery.event.move 1.2
 
 // One of swipeleft, swiperight, swipeup or swipedown is triggered on
 // moveend, when the move has covered a threshold ratio of the dimension
-// of the target node. The default is 0.4. It can be changed with:
-// 
-// jQuery.event.special.swipe.settings
+// of the target node, or has gone really fast. Threshold and velocity
+// sensitivity changed with:
+//
+// jQuery.event.special.swipe.settings.threshold
+// jQuery.event.special.swipe.settings.sensitivity
 
-(function(jQuery, undefined){
+(function (module) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD. Register as an anonymous module.
+		define(['jquery'], module);
+	} else {
+		// Browser globals
+		module(jQuery);
+	}
+})(function(jQuery, undefined){
 	var add = jQuery.event.add,
 	   
 	    remove = jQuery.event.remove,
@@ -22,15 +32,13 @@
 	    	jQuery.event.trigger(type, data, node);
 	    },
 
-	    // Ratio of the width (or height) of the target node must be
-	    // swiped before being considered a swipe.
 	    settings = {
 	    	// Ratio of distance over target finger must travel to be
 	    	// considered a swipe.
 	    	threshold: 0.4,
 	    	// Faster fingers can travel shorter distances to be considered
 	    	// swipes. 'sensitivity' controls how much. Bigger is shorter.
-	    	sensitivity: 2
+	    	sensitivity: 6
 	    };
 
 	function moveend(e) {
@@ -79,14 +87,15 @@
 		}
 	}
 
-	function isSetup(node) {
-		var events = jQuery.data(node, 'events');
-
-		return ((events.swipe ? 1 : 0) +
-			      (events.swipeleft ? 1 : 0) +
-		        (events.swiperight ? 1 : 0) +
-		        (events.swipeup ? 1 : 0) +
-		        (events.swipedown ? 1 : 0)) > 1;
+	function getData(node) {
+		var data = jQuery.data(node, 'event_swipe');
+		
+		if (!data) {
+			data = { count: 0 };
+			jQuery.data(node, 'event_swipe', data);
+		}
+		
+		return data;
 	}
 
 	jQuery.event.special.swipe =
@@ -95,18 +104,22 @@
 	jQuery.event.special.swipeup =
 	jQuery.event.special.swipedown = {
 		setup: function( data, namespaces, eventHandle ) {
-			// If another swipe event is already setup, don't setup again.
-			if (isSetup(this)) { return; }
+			var data = getData(this);
 
+			// If another swipe event is already setup, don't setup again.
+			if (data.count++ > 0) { return; }
+console.log('SETUP');
 			add(this, 'moveend', moveend);
 
 			return true;
 		},
 
 		teardown: function() {
-			// If another swipe event is still setup, don't teardown yet.
-			if (isSetup(this)) { return; }
+			var data = getData(this);
 
+			// If another swipe event is still setup, don't teardown.
+			if (--data.count > 0) { return; }
+console.log('TEARDOWN');
 			remove(this, 'moveend', moveend);
 
 			return true;
@@ -114,4 +127,4 @@
 
 		settings: settings
 	};
-})(jQuery);
+});
