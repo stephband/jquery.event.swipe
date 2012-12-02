@@ -154,6 +154,12 @@ slides
   slides.eq(i - 1).addClass('active');
 });{% endhighlight %}
 	
+		<p>
+			Swipe events are a thin wrapper around the moveend event; a convenience to reveal when a finger has moved in a swipe gesture.
+			The underlying move events bubble and you can delegate them, but making the swipe events also do this would be unnecessarily expensive.
+			Use move events if you need more flexibility.
+		</p>
+	
 		<h2 id="scroll">Swipe or scroll</h2>
 		<p>
 		   Swipe events are a thin wrapper built on top of move events (<a href="http://stephband.info/jquery.event.move/">stephband.info/jquery.event.move</a>).
