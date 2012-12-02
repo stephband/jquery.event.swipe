@@ -154,9 +154,15 @@ slides
   slides.eq(i - 1).addClass('active');
 });{% endhighlight %}
 	
-		<p>But what if I want to scroll, not swipe?
-		   Well, swipe events are built on top of move events (<a href="http://stephband.info/jquery.event.move/">stephband.info/jquery.event.move</a>).
-		   To avoid messing up native gestures such as scroll, call preventDefault() on movestart:</p>
+		<h2 id="scroll"></h2>
+		<p>
+		   Swipe events are a thin wrapper built on top of move events (<a href="http://stephband.info/jquery.event.move/">stephband.info/jquery.event.move</a>).
+		   Move events, by default, override native scrolling, as they assume that you want to move something rather than scroll the window.
+		   To re-enable scrolling, call <code>e.preventDefault()</code> inside a <code>movestart</code> handler.
+		</p>
+		<p>
+		   In the example above, we want to be able to <code>swipeleft</code> and <code>swiperight</code>, but scroll up and down.
+		   Inside a movestart handler, the direction of the finger is moving is calculated and the event is prevented if it is found to be moving up or down::</p>
 
 {% highlight js %}
 jQuery('.mydiv')
@@ -172,7 +178,7 @@ jQuery('.mydiv')
 		<p>To see how the example at the top of the page works, view source.</p>
 
 		<h2 id="where">Where is jquery.event.swipe being used?</h2>
-		<p>It's part of the <a href="stephband.info/template">template</a> project. It's brand new. It's not yet in a live project.</p>
+		<p>In slideshows on:</p>
 		<!--ul>
 			<li><a href="http://2012.festivalcite.ch/">Festival de la cité</a></li>
 		</ul-->
