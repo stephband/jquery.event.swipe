@@ -154,11 +154,11 @@ slides
   slides.eq(i - 1).addClass('active');
 });{% endhighlight %}
 	
-		<h2 id="scroll"></h2>
+		<h2 id="scroll">Swipe or scroll</h2>
 		<p>
 		   Swipe events are a thin wrapper built on top of move events (<a href="http://stephband.info/jquery.event.move/">stephband.info/jquery.event.move</a>).
 		   Move events, by default, override native scrolling, as they assume that you want to move something rather than scroll the window.
-		   To re-enable scrolling, call <code>e.preventDefault()</code> inside a <code>movestart</code> handler.
+		   To re-enable scrolling, call <code>e.preventDefault()</code> inside a movestart handler.
 		</p>
 		<p>
 		   In the example above, we want to be able to <code>swipeleft</code> and <code>swiperight</code>, but scroll up and down.
