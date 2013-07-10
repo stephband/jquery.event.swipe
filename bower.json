@@ -1,0 +1,19 @@
+{
+    "name": "jquery.event.swipe",
+    "version": "0.5.0",
+    "author": {
+        "name": "Stephen Band",
+        "url": "http://stephband.info",
+        "twitter": "stephband"
+    },
+    "dependencies": {
+        "jquery": ">=1.7.0",
+        "jquery.event.move": "1.x"
+    },
+    "licenses": [{"url":"http://www.wtfpl.net/txt/copying/"}],
+    "main": "js/jquery.event.swipe.js",
+    "description": "jQuery special events for the gestures swipeleft, swiperight, swipeup and swipedown.",
+    "keywords": ["touch","special","event","swipe"],
+    "homepage": "http://github.com/stephband/jquery.event.swipe",
+    "docs": "http://stephband.info/jquery.event.swipe"
+}
