@@ -23,29 +23,30 @@
 	}
 })(function(jQuery, undefined){
 	var add = jQuery.event.add,
-	   
-	    remove = jQuery.event.remove,
 
-	    // Just sugar, so we can have arguments in the same order as
-	    // add and remove.
-	    trigger = function(node, type, data) {
-	    	jQuery.event.trigger(type, data, node);
-	    },
+			remove = jQuery.event.remove,
 
-	    settings = {
-	    	// Ratio of distance over target finger must travel to be
-	    	// considered a swipe.
-	    	threshold: 0.4,
-	    	// Faster fingers can travel shorter distances to be considered
-	    	// swipes. 'sensitivity' controls how much. Bigger is shorter.
-	    	sensitivity: 6
-	    };
+			// Just sugar, so we can have arguments in the same order as
+			// add and remove.
+			trigger = function(node, type, data) {
+				jQuery.event.trigger(type, data, node);
+			},
+
+			settings = {
+				// Ratio of distance over target finger must travel to be
+				// considered a swipe.
+				threshold: 0.4,
+				// Faster fingers can travel shorter distances to be considered
+				// swipes. 'sensitivity' controls how much. Bigger is shorter.
+				sensitivity: 6
+			};
 
 	function moveend(e) {
-		var w, h, event;
+		var w, h, event, node, option;
 
 		w = e.target.offsetWidth;
 		h = e.target.offsetHeight;
+		node = e.currentTarget;
 
 		// Copy over some useful properties from the move event
 		event = {
@@ -53,19 +54,24 @@
 			distY: e.distY,
 			velocityX: e.velocityX,
 			velocityY: e.velocityY,
-			finger: e.finger
+			finger: e.finger,
+			data: {}
 		};
 
 		// Find out which of the four directions was swiped
 		if (e.distX > e.distY) {
 			if (e.distX > -e.distY) {
-				if (e.distX/w > settings.threshold || e.velocityX * e.distX/w * settings.sensitivity > 1) {
+				option = jQuery.data(node, 'event_swiperight_data') || {};
+				option = $.extend(event.data, settings, option);
+				if (e.distX/w > option.threshold || e.velocityX * e.distX/w * option.sensitivity > 1) {
 					event.type = 'swiperight';
 					trigger(e.currentTarget, event);
 				}
 			}
 			else {
-				if (-e.distY/h > settings.threshold || e.velocityY * e.distY/w * settings.sensitivity > 1) {
+				option = jQuery.data(node, 'event_swipeup_data') || {};
+				option = $.extend(event.data, settings, option);
+				if (-e.distY/h > option.threshold || e.velocityY * e.distY/w * option.sensitivity > 1) {
 					event.type = 'swipeup';
 					trigger(e.currentTarget, event);
 				}
@@ -73,13 +79,17 @@
 		}
 		else {
 			if (e.distX > -e.distY) {
-				if (e.distY/h > settings.threshold || e.velocityY * e.distY/w * settings.sensitivity > 1) {
+				option = jQuery.data(node, 'event_swipedown_data') || {};
+				option = $.extend(event.data, settings, option);
+				if (e.distY/h > option.threshold || e.velocityY * e.distY/w * option.sensitivity > 1) {
 					event.type = 'swipedown';
 					trigger(e.currentTarget, event);
 				}
 			}
 			else {
-				if (-e.distX/w > settings.threshold || e.velocityX * e.distX/w * settings.sensitivity > 1) {
+				option = jQuery.data(node, 'event_swipeleft_data') || {};
+				option = $.extend(event.data, settings, option);
+				if (-e.distX/w > option.threshold || e.velocityX * e.distX/w * option.sensitivity > 1) {
 					event.type = 'swipeleft';
 					trigger(e.currentTarget, event);
 				}
@@ -98,33 +108,33 @@
 		return data;
 	}
 
-	jQuery.event.special.swipe =
-	jQuery.event.special.swipeleft =
-	jQuery.event.special.swiperight =
-	jQuery.event.special.swipeup =
-	jQuery.event.special.swipedown = {
-		setup: function( data, namespaces, eventHandle ) {
-			var data = getData(this);
+	$.each(['swipe', 'swipeleft', 'swiperight', 'swipeup', 'swipedown'], function (idx, eventName) {
+		jQuery.event.special[eventName] = {
+			setup: function( data, namespaces, eventHandle ) {
+				var info = getData(this);
+				// set event data
+				jQuery.data(this, ['event', eventName, 'data'].join('_'), data);
 
-			// If another swipe event is already setup, don't setup again.
-			if (data.count++ > 0) { return; }
+				// If another swipe event is already setup, don't setup again.
+				if (info.count++ > 0) { return; }
 
-			add(this, 'moveend', moveend);
+				add(this, 'moveend', moveend);
 
-			return true;
-		},
+				return true;
+			},
 
-		teardown: function() {
-			var data = getData(this);
+			teardown: function() {
+				var data = getData(this);
 
-			// If another swipe event is still setup, don't teardown.
-			if (--data.count > 0) { return; }
+				// If another swipe event is still setup, don't teardown.
+				if (--data.count > 0) { return; }
 
-			remove(this, 'moveend', moveend);
+				remove(this, 'moveend', moveend);
 
-			return true;
-		},
+				return true;
+			},
 
-		settings: settings
-	};
+			settings: settings
+		};
+	});
 });
