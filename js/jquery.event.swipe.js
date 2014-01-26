@@ -44,8 +44,8 @@
 	function moveend(e) {
 		var w, h, event;
 
-		w = e.target.offsetWidth;
-		h = e.target.offsetHeight;
+		w = e.delegateTarget.offsetWidth;
+		h = e.delegateTarget.offsetHeight;
 
 		// Copy over some useful properties from the move event
 		event = {
