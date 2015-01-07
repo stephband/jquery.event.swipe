@@ -15,7 +15,7 @@
     "files": ["js/jquery.event.swipe.js"],
     "main": "js/jquery.event.swipe.js",
     "description": "jQuery special events for the gestures swipeleft, swiperight, swipeup and swipedown.",
-    "keywords": ["touch","special","event","swipe"],
+    "keywords": ["touch","special","event","swipe","dom","jquery"],
     "homepage": "http://github.com/stephband/jquery.event.swipe",
     "docs": "http://stephband.info/jquery.event.swipe"
 }
