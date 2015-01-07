@@ -224,6 +224,7 @@ jQuery('.mydiv')
 				var wrap = jQuery('.slides_wrap'),
 				    slides = wrap.find('.img_slide'),
 				    active = slides.filter('.active'),
+				    buttons = jQuery('.slide_button'),
 				    i = slides.index(active),
 				    width = wrap.width();
 
@@ -246,11 +247,15 @@ jQuery('.mydiv')
 
 				.on('activate', function(e) {
 					slides.eq(i).removeClass('active');
+					buttons.eq(i).removeClass('on');
 
 					jQuery(e.target).addClass('active');
 
 					// Update the active slide index
 					i = slides.index(e.target);
+
+					// select active class for slide button
+					buttons.eq(i).addClass('on');
 				})
 
 				// The code below handles what happens before any swipe event is triggered.
