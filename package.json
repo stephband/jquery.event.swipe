@@ -11,7 +11,7 @@
         "jquery": ">=1.7.0",
         "jquery.event.move": "1.x"
     },
-    "licenses": [{"url":"http://www.wtfpl.net/txt/copying/"}],
+    "licenses": [{"url": "http://www.wtfpl.net/txt/copying/"}],
     "files": ["js/jquery.event.swipe.js"],
     "main": "js/jquery.event.swipe.js",
     "description": "jQuery special events for the gestures swipeleft, swiperight, swipeup and swipedown.",
